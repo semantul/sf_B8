@@ -1,7 +1,7 @@
 pipeline {
     agent any
     environment {
-        status = curl -o /dev/null -s -w "%{http_code}\n" localhost:9889
+        status = "curl -I -s www.com|head -n1|cut -d " " -f 2 localhost:9889"
     }
     stages {
 	     stage('Build') {
