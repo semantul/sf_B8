@@ -7,18 +7,16 @@ pipeline {
                   docker run --rm -d -v /var/lib/jenkins/workspace/Test-pipeline:/usr/share/nginx/html -p 9889:80 nginx:latest
               """
           }
-	}
+	      }
         stage('Test') {
             steps {
                 script {
                     echo 'Testing...'
-                    status = `curl -I -s localhost:9889|head -n1|cut -d " " -f 2`
-                    sh "echo ${status}"
-                    if (status == '200') {
-                        currentBuild.result = "SUCCESS"
-                    }
-                    else {
-                        currentBuild.result = "FAILURE"
+                    def get = new URL("http://localhost:9889").openConnection();
+                    def getRC = get.getResponseCode();
+                    println(getRC);
+                    if(getRC.equals(200)) {
+                        println(get.getInputStream().getText());
                     }
                 }
             }
