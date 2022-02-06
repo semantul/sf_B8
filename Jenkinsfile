@@ -13,15 +13,16 @@ pipeline {
 	}
         stage('Test') {
             steps {
-                echo 'Testing...'
-                sh """
-                    if (status == '200') {
+                script {
+                    echo 'Testing...'
+                    sh "echo ${env.status}"
+                    if (env.status == '200') {
                         currentBuild.result = "SUCCESS"
                     }
                     else {
                         currentBuild.result = "FAILURE"
                     }
-                """
+                }
             }
         }
         stage('Post_test') {
