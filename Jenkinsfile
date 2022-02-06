@@ -12,12 +12,7 @@ pipeline {
             steps {
                 script {
                     echo 'Testing...'
-                    def get = new URL("http://localhost:9889").openConnection();
-                    def getRC = get.getResponseCode();
-                    println(getRC);
-                    if(getRC.equals(200)) {
-                        println(get.getInputStream().getText());
-                    }
+                    sh 'curl -Is http://localhost:9889|head -n1|cut -d " " -f2|grep -q 200 && echo True || echo False'
                 }
             }
         }
