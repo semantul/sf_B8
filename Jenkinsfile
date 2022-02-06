@@ -4,7 +4,6 @@ pipeline {
 	     stage('Build') {
           steps {
               sh """
-                  docker stop `docker ps|grep 9889|cut -d " " -f1`
                   docker run --rm -d -v /var/lib/jenkins/workspace/Test-pipeline:/usr/share/nginx/html -p 9889:80 nginx:latest
               """
           }
