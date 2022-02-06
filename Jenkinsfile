@@ -1,5 +1,8 @@
 pipeline {
     agent any
+    environment {
+        status = curl -o /dev/null -s -w "%{http_code}\n" localhost:9889
+    }
     stages {
 	     stage('Build') {
           steps {
@@ -12,11 +15,12 @@ pipeline {
             steps {
                 echo 'Testing...'
                 sh """
-                    echo "${env.WORKSPACE}"
-                    ss -nlpt
-                    pwd
-                    ls -la
-                    curl -I localhost:9889
+                    if (status == '200') {
+                        currentBuild.result = "SUCCESS"
+                    }
+                    else {
+                        currentBuild.result = "FAILURE"
+                    }
                 """
             }
         }
