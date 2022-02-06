@@ -23,7 +23,7 @@ pipeline {
         stage('Post_test') {
             steps {
                 sh """
-                    docker stop $(docker ps|grep 9889|awk '{print $1}')
+                    docker stop `docker ps|grep 9889|awk '{print $1}'`
                 """
             }
         }
