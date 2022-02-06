@@ -12,7 +12,7 @@ pipeline {
             steps {
                 script {
                     echo 'Testing...'
-                    sh "status = `curl -I -s localhost:9889|head -n1|cut -d " " -f 2`"
+                    status = `curl -I -s localhost:9889|head -n1|cut -d " " -f 2`
                     sh "echo ${status}"
                     if (status == '200') {
                         currentBuild.result = "SUCCESS"
