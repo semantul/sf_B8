@@ -4,7 +4,7 @@ pipeline {
 	     stage('Build') {
           steps {
               sh """
-                  docker run --rm -d -v /var/lib/jenkins/workspace/Test_pipeline:/usr/share/nginx/html -p 9889:80 nginx:latest
+                  docker run --rm -d -v /var/lib/jenkins/workspace/Test-pipeline:/usr/share/nginx/html -p 9889:80 nginx:latest
               """
           }
 	}
