@@ -1,8 +1,5 @@
 pipeline {
     agent any
-    environment {
-        status = "curl -I -s localhost:9889|head -n1|cut -d " " -f 2"
-    }
     stages {
 	     stage('Build') {
           steps {
@@ -15,8 +12,9 @@ pipeline {
             steps {
                 script {
                     echo 'Testing...'
-                    sh "echo ${env.status}"
-                    if (env.status == '200') {
+                    sh "status = `curl -I -s localhost:9889|head -n1|cut -d " " -f 2`"
+                    sh "echo ${status}"
+                    if (status == '200') {
                         currentBuild.result = "SUCCESS"
                     }
                     else {
