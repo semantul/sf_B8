@@ -22,7 +22,7 @@ pipeline {
               changeset "index.html"
             }
             steps {
-                sh 'if (( `md5sum index.html|cut -d " " -f1` == `curl -s http://localhost:9889|md5sum|cut -d " " -f1` )); then echo true; else exit 1;fi'
+                sh 'if [ `md5sum index.html|cut -d " " -f1` = `curl -s http://localhost:9889|md5sum|cut -d " " -f1` ]; then echo true; else exit 1;fi'
             }
         }
     }
