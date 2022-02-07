@@ -1,7 +1,10 @@
 pipeline {
     agent any
     stages {
-	     stage('Build') {
+        when {
+          changeset "index.html"
+        }
+	      stage('Build') {
           steps {
               sh 'docker run --rm -d -v /var/lib/jenkins/workspace/Test-pipeline:/usr/share/nginx/html -p 9889:80 nginx:latest'
           }
