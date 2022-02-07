@@ -12,7 +12,7 @@ pipeline {
             steps {
                 script {
                     echo 'Testing...'
-                    sh 'curl -Is http://localhost:9889|head -n1|cut -d " " -f2|grep -q 400 && echo True || echo False'
+                    sh 'curl -Is http://localhost:9889|head -n1|cut -d " " -f2|grep -q 400 && echo true || exit 1'
                 }
             }
         }
