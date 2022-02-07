@@ -24,9 +24,7 @@ pipeline {
     }
     post {
         failure {
-            steps {
-                sh 'echo "Failure Test-pipeline" | mail -s "Jenkins notification" semantul@yandex.ru'
-            }
+            mail to: semantul@yandex.ru, subject: 'The Pipeline Test-pipeline is failed :('
         }
     }
 }
