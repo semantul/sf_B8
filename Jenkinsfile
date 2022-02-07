@@ -16,11 +16,6 @@ pipeline {
                 sh 'if (( `md5sum index.html|cut -d " " -f1` == `curl -s http://localhost:9889|md5sum|cut -d " " -f1` )); then echo true; else exit 1;fi'
             }
         }
-        stage('Post_test') {
-            steps {
-                sh 'docker stop `docker ps|grep 9889|cut -d " " -f1`'
-            }
-        }
     }
     post {
         always {
