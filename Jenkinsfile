@@ -8,7 +8,7 @@ pipeline {
 	      }
         stage('Test_code') {
             steps {
-                    sh 'curl -Is http://localhost:9889|head -n1|cut -d " " -f2|grep -q 400 && echo true || exit 1'
+                    sh 'curl -Is http://localhost:9889|head -n1|cut -d " " -f2|grep -q 200 && echo true || exit 1'
             }
         }
         stage('Test_checksum') {
