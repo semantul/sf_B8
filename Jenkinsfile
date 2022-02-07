@@ -27,7 +27,7 @@ pipeline {
           sh 'docker stop `docker ps|grep 9889|cut -d " " -f1`'
         }
         failure {
-            mail to: semantul@yandex.ru, subject: 'The Pipeline Test-pipeline is failed'
+            mail to: "semantul@yandex.ru", subject: 'The Pipeline Test-pipeline is failed'
         }
     }
 }
