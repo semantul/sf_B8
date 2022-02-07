@@ -24,7 +24,9 @@ pipeline {
     }
     post {
         failure {
-            sh ' echo "Failure Test-pipeline" | mail -s "Jenkins notification" semantul@yandex.ru'
+            steps {
+                sh 'echo "Failure Test-pipeline" | mail -s "Jenkins notification" semantul@yandex.ru'
+            }
         }
     }
 }
