@@ -23,21 +23,8 @@ pipeline {
         }
     }
     post {
-        always {
-            echo 'This will always run'
-        }
-        success {
-            echo 'This will run only if successful'
-        }
         failure {
-            echo 'Failure Test-pipeline'
-        }
-        unstable {
-            echo 'This will run only if the run was marked as unstable'
-        }
-        changed {
-            echo 'This will run only if the state of the Pipeline has changed'
-            echo 'For example, if the Pipeline was previously failing but is now successful'
+            sh ' echo "Failure Test-pipeline" | mail -s "Jenkins notification" semantul@yandex.ru'
         }
     }
 }
